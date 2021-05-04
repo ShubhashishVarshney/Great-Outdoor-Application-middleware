@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,7 @@ public class ProductServiceImpl implements IProductService {
 	/*
 	 * service implementation for Finding All Items
 	 */
+	@Transactional
 	@Override
 	public List<ProductModel> findAllProducts() {
 		return productrepo.findAll().stream().map(EMParserProduct::parse).collect(Collectors.toList());
@@ -46,6 +49,7 @@ public class ProductServiceImpl implements IProductService {
 	/*
 	 * service implementation for Finding Products By ProductId
 	 */
+	@Transactional
 	@Override
 	public ProductModel findByProductId(Long id) {
 		return EMParserProduct.parse(productrepo.findById(id).orElse(null));
@@ -53,6 +57,7 @@ public class ProductServiceImpl implements IProductService {
 	/*
 	 * service implementation for Finding Products By Category
 	 */
+	@Transactional
 	@Override
 	public List<ProductModel> findByProductCategory(String productCategory) {
 		return productrepo.findByCategory(productCategory).stream().map(EMParserProduct::parse)
@@ -63,6 +68,7 @@ public class ProductServiceImpl implements IProductService {
 	 * service implementation for Adding Product to ProductEntity
 	 * @Throws ProductException
 	 */
+	@Transactional
 	@Override
 	public ProductModel addProduct(ProductModel productEntity) throws ProductException {
 
@@ -77,6 +83,7 @@ public class ProductServiceImpl implements IProductService {
 	 * service implementation for Updating existing Product
 	 * @Throws ProductException
 	 */
+	@Transactional
 	@Override
 	public ProductModel updateProduct(ProductModel productEntity) throws ProductException {
 		if (productrepo.existsById(productEntity.getProductId())) {
@@ -90,6 +97,7 @@ public class ProductServiceImpl implements IProductService {
 	/*
 	 * service implementation for Updating Product Quantity
 	 */
+	@Transactional
 	@Override
 	public boolean updateProductQuantity(Integer quantity, Long productId) {
 		if (productId != null) {
@@ -105,6 +113,7 @@ public class ProductServiceImpl implements IProductService {
 	 * service implementation for deleting Product By ProductId
 	 * @Throws ProductException
 	 */
+	@Transactional
 	@Override
 	public boolean deleteByProductId(Long id) throws ProductException {
 			if (productrepo.findById(id) != null) {
@@ -117,6 +126,7 @@ public class ProductServiceImpl implements IProductService {
 	/*
 	 * service implementation for Searching Product By product name
 	 */
+	@Transactional
 	@Override
 	public List<ProductModel> search(String keyword) {
 
@@ -125,6 +135,7 @@ public class ProductServiceImpl implements IProductService {
 	/*
 	 * service implementation for Filtering Product
 	 */
+	@Transactional
 	@Override
 	public List<ProductModel> filter(BigDecimal maxPrice) {
 

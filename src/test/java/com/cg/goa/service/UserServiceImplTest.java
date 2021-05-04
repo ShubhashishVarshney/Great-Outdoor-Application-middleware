@@ -48,7 +48,7 @@ public class UserServiceImplTest {
 		UserdataModel expected=new UserdataModel("shubh",1,"admin","admin");
 		Mockito.when(userrepo.findById(testdata.getUserId())).thenReturn(Optional.of(testdata));
 		String actual =usImpl.loginUser(expected);
-		assertEquals("login successfully", actual);
+		assertEquals("LOGIN SUCCESSFULLY", actual);
 	}
 	/*
 	 * Test Case 3 - to Logout
@@ -58,11 +58,6 @@ public class UserServiceImplTest {
 	@DisplayName("UserServiceImpl::logout user should be not able to do anything")
 	void testLogout() {
 		String actual =  usImpl.logout();
-		assertEquals("logout successfully", actual);
+		assertEquals("LOGOUT SUCCESSFULLY", actual);
 	}
-
-	
-
-
-
 }

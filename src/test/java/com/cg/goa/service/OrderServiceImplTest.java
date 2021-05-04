@@ -110,6 +110,7 @@ public class OrderServiceImplTest {
 						LocalDateTime.of(LocalDate.of(2020, 03, 02), LocalTime.of(16, 30))),
 				new OrderEntity(2, "U02", cost, 1L, LocalDateTime.of(LocalDate.of(2020, 03, 02), LocalTime.of(16, 30)),
 						LocalDateTime.of(LocalDate.of(2020, 03, 02), LocalTime.of(16, 30))) });
+		
 		List<OrderModel> expected = Arrays.asList(new OrderModel[] {
 				new OrderModel(1, "U01", cost, 1L, LocalDateTime.of(LocalDate.of(2020, 03, 02), LocalTime.of(16, 30)),
 						LocalDateTime.of(LocalDate.of(2020, 03, 02), LocalTime.of(16, 30))),

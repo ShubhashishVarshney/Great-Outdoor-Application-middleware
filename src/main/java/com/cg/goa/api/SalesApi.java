@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,7 +38,7 @@ public class SalesApi {
 	 * return : Boolean
 	 * params : productId, Quantity, totalSale
 	 */
-	@PostMapping("/{productId},{quantity},{totalSale}")
+	@PutMapping("/{productId},{quantity},{totalSale}")
 	public ResponseEntity<Boolean> updateProductReport(@PathVariable("productId") String productId,
 			@PathVariable("quantity") Integer quantity, @PathVariable("totalSale") BigDecimal totalSale)
 			throws SalesReportException {

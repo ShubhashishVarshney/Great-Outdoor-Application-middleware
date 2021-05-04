@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +41,7 @@ public class SalesReportServiceImpl implements ISalesReportService {
 	/*
 	 * service implementation for Finding All Sales Report
 	 */
+	@Transactional
 	@Override
 	public List<SalesReportModel> findAllSalesReport() {
 		return salesrepo.findAll().stream().map(parser::parse).collect(Collectors.toList());
@@ -46,6 +49,7 @@ public class SalesReportServiceImpl implements ISalesReportService {
 	/*
 	 * service implementation for Finding All Sales Report By ProductId
 	 */
+	@Transactional
 	@Override
 	public SalesReportModel findAllSalesReportByProductId(String productId) {
 		if (productId != null) {
@@ -56,6 +60,7 @@ public class SalesReportServiceImpl implements ISalesReportService {
 	/*
 	 * service implementation for Updating Product Report
 	 */
+	@Transactional
 	@Override
 	public boolean updateProductReport(String productId, Integer quantity, BigDecimal totalSale) {
 		
@@ -74,6 +79,7 @@ public class SalesReportServiceImpl implements ISalesReportService {
 	 * service implementation for Deleting All Sales Report
 	 * @Throws SalesReportException
 	 */
+	@Transactional
 	@Override
 	public boolean deleteAllSalesReport() throws SalesReportException {
 		if (salesrepo.findAll() != null) {
@@ -88,6 +94,7 @@ public class SalesReportServiceImpl implements ISalesReportService {
 	 * service implementation for Deleting Sales Report By Id
 	 * @Throws SalesReportException
 	 */
+	@Transactional
 	@Override
 	public boolean deleteSalesReportById(Long salesReportId) throws SalesReportException {
 		if (salesrepo.findById(salesReportId) != null) {

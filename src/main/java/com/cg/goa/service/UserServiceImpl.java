@@ -1,5 +1,7 @@
 package com.cg.goa.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,7 @@ public class UserServiceImpl implements IUserService {
 	 * service implementation for Adding New User
 	 * @Throws UserNotFoundException
 	 */
+	@Transactional
 	@Override
 	public UserdataModel addUser(UserdataModel user) throws UserNotFoundException {
 		if (user == null || userrepo.findById(user.getUserId())==null) {
@@ -47,6 +50,7 @@ public class UserServiceImpl implements IUserService {
 	 * service implementation for Log in User
 	 * @Throws UserNotFoundException
 	 */
+	@Transactional
 	@Override
 	public String loginUser(UserdataModel u) throws IDNotFoundException {
 		int userId = u.getUserId();
@@ -60,6 +64,7 @@ public class UserServiceImpl implements IUserService {
 	/*
 	 * service implementation for Log Out New User
 	 */
+	@Transactional
 	@Override
 	public String logout() {
 		

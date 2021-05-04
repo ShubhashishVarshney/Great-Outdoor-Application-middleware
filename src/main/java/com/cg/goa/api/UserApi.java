@@ -28,7 +28,6 @@ public class UserApi {
 	 */
 	@PostMapping
 	public ResponseEntity<UserdataModel> addUser(@RequestBody UserdataModel user) throws UserNotFoundException {
-		// return new ResponseEntity<>(userService.addUser(), HttpStatus.OK);
 		return ResponseEntity.ok(userservice.addUser(user));
 	}
 	/*

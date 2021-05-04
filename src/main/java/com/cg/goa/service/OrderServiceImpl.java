@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +41,7 @@ public class OrderServiceImpl implements IOrderService {
 	/*
 	 * service implementation for Finding Order By UserId
 	 */
+	@Transactional
 	@Override
 	public List<OrderModel> findOrdersByUserId(String userId) {
 
@@ -48,6 +51,7 @@ public class OrderServiceImpl implements IOrderService {
 	/*
 	 * service implementation for Finding All Orders
 	 */
+	@Transactional
 	@Override
 	public List<OrderModel> findAllOrders() {
 
@@ -57,6 +61,7 @@ public class OrderServiceImpl implements IOrderService {
 	 * service implementation for Adding new Order
 	 * @Throws OrderException
 	 */
+	@Transactional
 	@Override
 	public OrderModel addOrder(OrderModel orderEntity) throws OrderException {
 		if (!orderrepo.existsById(orderEntity.getOrderId())) {
@@ -70,6 +75,7 @@ public class OrderServiceImpl implements IOrderService {
 	 * service implementation for deleting All Orders
 	 * @Throws OrderException
 	 */
+	@Transactional
 	@Override
 	public boolean deleteAllOrders() throws OrderException {
 		if (orderrepo.findAll().isEmpty()) {
@@ -82,6 +88,7 @@ public class OrderServiceImpl implements IOrderService {
 	 * service implementation for deleting Order By Id
 	 * @Throws OrderException
 	 */
+	@Transactional
 	@Override
 	public boolean deleteOrderById(Integer orderId) throws OrderException {
 		if (orderrepo.existsById(orderId)) {
@@ -95,6 +102,7 @@ public class OrderServiceImpl implements IOrderService {
 	 * service implementation for Updating Date
 	 * @Throws OrderException
 	 */
+	@Transactional
 	@Override
 	public boolean updateDate(Integer orderId, LocalDateTime dispatchDate, LocalDateTime arrivalDate)
 			throws OrderException {

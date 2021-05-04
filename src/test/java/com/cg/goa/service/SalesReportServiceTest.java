@@ -34,7 +34,7 @@ public class SalesReportServiceTest {
 	 * test case 1- to Find All Sales Report
 	 */
 	@Test
-	@DisplayName("SalesReportServiceImpl::Update Product Report should update reports in SalesReportModel List")
+	@DisplayName("SalesReportServiceImpl::find All Sales Report should find all reports in SalesReportModel List")
 	void testfindAllSalesReport() {
 		BigDecimal cost=new BigDecimal("100.12");
 		List<SalesReportEntity> testdata =  Arrays.asList(new SalesReportEntity[] {
@@ -50,31 +50,7 @@ public class SalesReportServiceTest {
 		assertEquals(expected, actual);
 	}
 	/*
-	 * test case 2-to Update Product Report
-	 */
-	@Test
-	@DisplayName("SalesReportServiceImpl::Update Product Report should update reports in SalesReportModel List")
-	void testUpdateProductReport() {
-		//SalesReportEntity s = new SalesReportEntity();
-		BigDecimal cost=new BigDecimal("100.12");
-		SalesReportEntity testdata = new SalesReportEntity(1L, "P01", "cookies", 45,cost);
-		SalesReportModel expected = new SalesReportModel(1L, "P01", "cookies", 45, cost);
-		//Mockito.when(salesrepo.existsById(testdata.getSalesReportId())).thenReturn(true);
-		//s=salesrepo.findByproductId(testdata.getProductId());
-		//testdata.setProductId(testdata.getProductId());
-		//testdata.setTotalSale(cost);
-		//Mockito.when(salesrepo.findById(testdata.getSalesReportId())).thenReturn(Optional.of(testdata));
-		Mockito.when(salesrepo.existsByproductId(testdata.getProductId())).thenReturn(true);
-		/*
-		 * s=salesrepo.findAllByproductId(testdata.getProductId());
-		 * s.setQuantitySold(49); s.setTotalSale(cost);
-		 */
-	Mockito.when(salesrepo.save(testdata)).thenReturn(testdata);
-    	boolean actual = srsImpl.updateProductReport(expected.getProductId(), expected.getQuantitySold(),expected.getTotalSale());
-    	assertTrue(actual);
-	}
-	/*
-	 * test case 3- to Find  Sales Report By Product Id
+	 * test case 2- to Find  Sales Report By Product Id
 	 */
 	@Test
 	@DisplayName("SalesReportServiceImpl::Find Orders By Product Id should find orders by product Id in SalesReport List")
@@ -87,12 +63,12 @@ public class SalesReportServiceTest {
 		assertEquals(expected, actual);
 	}
 	/*
-	 * test case 4- to Delete Sales Report By Id
+	 * test case 3- to Delete Sales Report By Id
 	 * @Sales Report Exception
 	 */
 	//Delete Report By Id Test Case
 	@Test
-	@DisplayName("SalesReportServiceImpl::Update Product Report should update reports in SalesReportModel List")
+	@DisplayName("SalesReportServiceImpl::delete Sales Report By Id  should delete reports in SalesReportModel ")
 	void testdeleteSalesReportByIdException() throws SalesReportException {
 		BigDecimal cost=new BigDecimal("100.12");
 		SalesReportEntity testdata = new SalesReportEntity(1L, "P01", "cookies", 45,cost);
@@ -104,12 +80,11 @@ public class SalesReportServiceTest {
 	}
 	
 	/*
-	 * test case 5- to Delete All Sales Report
+	 * test case 4- to Delete All Sales Report
 	 * @Sales Report Exception
 	 */
-	//Delete All Reports Test Case
 	@Test
-	@DisplayName("SalesReportServiceImpl::Update Product Report should update reports in SalesReportModel List")
+	@DisplayName("SalesReportServiceImpl::delete All SalesReport should delete all reports in SalesReportModel List")
 	void testdeleteAllSalesReport() throws SalesReportException {
 		BigDecimal cost=new BigDecimal("100.12");
 		List<SalesReportEntity> testdata =  Arrays.asList(new SalesReportEntity[] {

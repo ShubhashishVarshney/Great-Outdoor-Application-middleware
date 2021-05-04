@@ -30,7 +30,6 @@ public class GrowthReportApi {
 	 */
 	@GetMapping
 	public ResponseEntity<List<GrowthReportModel>> findAllGrowthReport() {
-		//System.out.println("hello world");
 		return ResponseEntity.ok(growthservice.findAllGrowthReport());
 	}
 

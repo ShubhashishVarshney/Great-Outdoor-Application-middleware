@@ -1,3 +1,7 @@
+connect system/root;
+ 
+connect  sample/sample;
+
 create sequence HIBERNATE_SEQUENCE;
 	
 create table customer_entity
@@ -16,6 +20,15 @@ Alter table customer_entity Add area varchar2(50);
 Alter table customer_entity Add city varchar2(50);
 Alter table customer_entity Add state varchar2(50);
 Alter table customer_entity Add zip   number(19);
+
+
+update customer_entity set address_id='101';
+update customer_entity set building_name='A block';
+update customer_entity set area=' great value sharnam';
+update customer_entity set street_no='street 2';
+update customer_entity set city='greater noida' ;
+update customer_entity set state='Uttar Pradesh';
+update customer_entity set zip='201306';
 
 
 
@@ -76,22 +89,13 @@ cart_id         number(19)  constraint  ProductEntity_cartId_fk REFERENCES cart_
 );
 
 
+
 Insert into product_entity(product_id,product_name,price,image,color,category,quantity,manufacturer,specification,order_id,cart_id) values (11,'Cello',685.0,'png','Gold','Bottle',5,'CelloLtd','Thermosteel',1,1);
 Insert into product_entity(product_id,product_name,price,image,color,category,quantity,manufacturer,specification,order_id,cart_id) values (12,'cello',750.0,'png','steel','jug',5,'CelloLtd','themo',2,2);
 Insert into product_entity(product_id,product_name,price,image,color,category,quantity,manufacturer,specification,order_id,cart_id) values (13,'maruti',750.0,'png','steel','jug',5,'CelloLtd','themo',3,3);
 
 
-create table address_entity	
-(address_id     number(19)    constraint Address_addressId_pk primary key,
-building_no     number(19)   constraint  Address_buildingNo_nn not null,
-street_name     varchar2(50) constraint  Address_nn not null,
-area           varchar2(50) constraint  Address_area_nn not null,
-city           varchar2(50) constraint  Address_city_nn not null,
-state          varchar2(20) constraint  Address_state_nn not null,
-zip             number(19) constraint   Address_zip_nn not null
-);
 
-Insert Into   address_entity(address_id,building_no,street_name,area,city,state,zip) values(101,23,'saketcolony','sector107','greaternoida','uttarpradesh',201302);
 
 create table growth_report_entity
 (growth_report_id   number(19)    primary key,

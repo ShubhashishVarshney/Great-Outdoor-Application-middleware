@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,7 @@ public class WishListServiceImpl implements IWishlistService {
 	/*
 	 * service implementation for Finding All Items
 	 */
+	@Transactional
 	@Override
 	public List<WishlistItemModel> findAllItems() {
 
@@ -43,6 +46,7 @@ public class WishListServiceImpl implements IWishlistService {
 	/*
 	 * service implementation for Finding Wishlist
 	 */
+	@Transactional
 	@Override
 	public List<WishlistItemModel> findWishlist(String userId) {
 		//System.out.println("aaas");
@@ -52,16 +56,17 @@ public class WishListServiceImpl implements IWishlistService {
 	 * service implementation for Finding Wishlist Item
 	 * @Throws WishlistException
 	 */
+	@Transactional
 	@Override
 	public List<WishlistItemModel> findWishlistItem(String productId, String userId) throws WishlistException {
 		List<WishlistItemModel> w3 = new ArrayList<WishlistItemModel>();
-
 		List<WishlistItemModel> w2 = wishlistrepo.findAll().stream().map(parser::parse).collect(Collectors.toList());
 		for (WishlistItemModel w1 : w2) {
 			if (!w1.getUserId().equalsIgnoreCase(userId)) {
 				continue;
-			}
+			}else {
 			w3 = wishlistrepo.findByuserId(w1.getUserId()).stream().map(parser::parse).collect(Collectors.toList());
+			}
 		}
 
 		return w3;
@@ -69,6 +74,7 @@ public class WishListServiceImpl implements IWishlistService {
 	/*
 	 * service implementation for Adding new Product to Wishlist 
 	 */
+	@Transactional
 	@Override
 	public boolean addProductToWishlist(String productId, Long wishlistID) {
 		if (wishlistrepo.existsById(wishlistID)) {
@@ -83,6 +89,7 @@ public class WishListServiceImpl implements IWishlistService {
 	 * service implementation for Deleting Wishlist Item
 	 * @Throws WishlistException
 	 */
+	@Transactional
 	@Override
 	public boolean deleteWishlistItem(String productId, String userId) throws WishlistException {
 		List<WishlistItemModel> w2 = wishlistrepo.findAll().stream().map(parser::parse).collect(Collectors.toList());
@@ -102,12 +109,12 @@ public class WishListServiceImpl implements IWishlistService {
 	 * service implementation for Deleting Wishlist Item
 	 * @Throws WishlistException
 	 */
+	@Transactional
 	@Override
 	public boolean deleteWishlist(String userId) throws WishlistException {
 		List<WishlistItemModel> w2 = wishlistrepo.findAll().stream().map(parser::parse).collect(Collectors.toList());
 		for (WishlistItemModel w1 : w2) {
 			if (!w1.getUserId().equalsIgnoreCase(userId)) {
-				//throw new WishlistException("Unable to delete without productId and userId");
 				continue;
 			}
 			wishlistrepo.deleteById(w1.getWishlistId());
@@ -118,6 +125,7 @@ public class WishListServiceImpl implements IWishlistService {
 	 * service implementation for Adding Wishlist Item
 	 * @Throws WishlistException
 	 */
+	@Transactional
 	@Override
 	public WishlistItemModel addWishlistItem(WishlistItemModel wishlistItem) throws WishlistException {
 		if (wishlistrepo.existsById(wishlistItem.getWishlistId())) {

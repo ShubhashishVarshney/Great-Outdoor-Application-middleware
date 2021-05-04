@@ -40,7 +40,7 @@ public class GrowthReportServiceImpl implements IGrowthReportService {
 	/*
 	 * service implementation for Finding  All GrowthReport
 	 */
-	
+	@Transactional
 	@Override
 	public List<GrowthReportModel> findAllGrowthReport() {	
 		return growthrepo.findAll().stream().map(parser::parse).collect(Collectors.toList());
@@ -66,6 +66,7 @@ public class GrowthReportServiceImpl implements IGrowthReportService {
 	 * service implementation for deleting All GrowthReport
 	 * @Throws SalesReportException
 	 */
+	@Transactional
 	@Override
 	public boolean deleteAllGrowthReport() throws GrowthReportException {
 		if(growthrepo.findAll()!=null) {
@@ -82,6 +83,7 @@ public class GrowthReportServiceImpl implements IGrowthReportService {
 	 * service implementation for deleting Growth Report By Id
 	 * @Throws SalesReportException
 	 */
+	@Transactional
 	@Override
 	public boolean deleteGrowthReportById(Long growthReportId) throws GrowthReportException {
 		if (growthrepo.existsById(growthReportId)) {

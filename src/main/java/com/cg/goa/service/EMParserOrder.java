@@ -19,7 +19,6 @@ public class EMParserOrder {
 		return source == null ? null
 				: new OrderEntity(source.getOrderId(),
 						source.getUserId(),
-		//EMParserProduct.parse2(source.getProducts()),
 						source.getTotalPrice(),
 						source.getTotalQuantity(),
 						source.getDispatchDate(),
@@ -32,7 +31,6 @@ public class EMParserOrder {
 		return source == null ? null
 				: new OrderModel(source.getOrderId(),
 						source.getUserId(),
-		//EMParserProduct.parse1(source.getProducts()),
 						source.getTotalPrice(),
 						source.getTotalQuantity(),
 						source.getDispatchDate(),

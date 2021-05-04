@@ -81,6 +81,7 @@ public class WishListServiceImplTest {
 				new WishlistItemModel(1L,"U01","11"),	
 				new WishlistItemModel(2L, "U01", "11") });
 		Mockito.when(wishrepo.findAll()).thenReturn(testdata);
+		Mockito.when(wishrepo.findByuserId(testdata.get(0).getUserId())).thenReturn(testdata);
 		List<WishlistItemModel> actual = wsImpl.findWishlistItem(expected.get(0).getProductId(), expected.get(0).getUserId());
 		assertEquals(expected, actual);
 

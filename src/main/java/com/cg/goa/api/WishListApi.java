@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.cg.goa.exception.WishlistException;
@@ -55,12 +56,11 @@ public class WishListApi {
 	 * return : List
 	 * params : productId, WishlistId
 	 */
-	@PostMapping("/{productId},{id}")
+	@PutMapping("/{productId},{id}")
      public ResponseEntity<Boolean> addProduct(@PathVariable("productId") String productId,
 			@PathVariable("id") Long WishListId) throws WishlistException {
 		Boolean w = wishlistservice.addProductToWishlist(productId, WishListId);
 		return new ResponseEntity<>(w, HttpStatus.CREATED);
-
 	}
 	/*
 	 * to Delete Items in Wishlist By productId, userId
@@ -68,10 +68,8 @@ public class WishListApi {
 	 * params : productId,userId
 	 */
 	@DeleteMapping("deleteWishlistItem/{productId},{userId}")
-	public ResponseEntity<Boolean> deleteWishlistItem(@PathVariable(value = "productId") String productId,	@PathVariable("userId") String userId) throws WishlistException {
-		
+	public ResponseEntity<Boolean> deleteWishlistItem(@PathVariable(value = "productId") String productId,	@PathVariable("userId") String userId) throws WishlistException {		
 				return ResponseEntity.ok(wishlistservice.deleteWishlistItem(productId, userId));
-
 	}
 	/*
 	 * to Delete Items in Wishlist By userId
@@ -84,7 +82,7 @@ public class WishListApi {
 	}
 	/*
 	 * to Add Item in Wishlist
-	 * return : NIL
+	 * return : WishlistItemModel
 	 * params : NIL
 	 */
 	@PostMapping

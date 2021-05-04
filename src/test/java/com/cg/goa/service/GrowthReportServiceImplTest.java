@@ -81,9 +81,6 @@ public class GrowthReportServiceImplTest {
 				new GrowthReportEntity(1L,LocalDateTime.of(LocalDate.of(2020, 03, 02), LocalTime.of(16, 30)),cost,cost,cost,"red"),
 				new GrowthReportEntity(2L,LocalDateTime.of(LocalDate.of(2020, 03, 02), LocalTime.of(16, 30)),cost,cost,cost,"red")
 				});
-		List<GrowthReportModel> expected = Arrays.asList(new GrowthReportModel[] {
-				new GrowthReportModel(1L,LocalDateTime.of(LocalDate.of(2020, 03, 02), LocalTime.of(16, 30)),cost,cost,cost,"red"),
-				new GrowthReportModel(2L,LocalDateTime.of(LocalDate.of(2020, 03, 02), LocalTime.of(16, 30)),cost,cost,cost,"red") });
 			Mockito.when(growthrepo.findAll()).thenReturn(testdata); /* when repo.findAll() is called, then test data */
 			
 		Mockito.doNothing().when(growthrepo).deleteAll();

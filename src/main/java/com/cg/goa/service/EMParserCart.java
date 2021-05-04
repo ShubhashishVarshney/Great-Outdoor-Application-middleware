@@ -17,7 +17,6 @@ public class EMParserCart {
 		return source == null ? null
 				: new CartItemEntity(source.getCartId(),
 						source.getUserId(),
-		//	EMParserProduct.parse2(source.getProducts()),
 						source.getCartTotalPrice(),
 						source.getTotalQuantity()
 						);
@@ -29,7 +28,6 @@ public class EMParserCart {
 		return source == null ? null
 				: new CartItemModel(source.getCartId(),
 						source.getUserId(),
-		//EMParserProduct.parse1(source.getProducts()),
 						source.getCartTotalPrice(),
 						source.getTotalQuantity()
 						);

@@ -40,6 +40,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	/*
 	 * service implementation for Getting  All Customers
 	 */
+	@Transactional
 	@Override
 	public List<CustomerModel> getAllCustomers() {
 
@@ -49,6 +50,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	/*
 	 * service implementation for Adding Customer
 	 */
+	@Transactional
 	@Override
 	public CustomerModel addCustomer(CustomerModel customer) {
 		if (!customerRepo.existsById(customer.getCustomerId())) {
@@ -62,6 +64,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	/*
 	 * service implementation for Updating  deatils of existing Customer
 	 */
+	@Transactional
 	@Override
 	public CustomerModel updateCustomer(CustomerModel customer) {
 		if (customerRepo.existsById(customer.getCustomerId())) {
@@ -73,6 +76,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	/*
 	 * service implementation for Removing Customer
 	 */
+	@Transactional
 	@Override
 	public boolean removeCustomer(CustomerModel customer) {
 		if (customerRepo.findById(customer.getCustomerId())!=null) {
@@ -84,6 +88,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	/*
 	 * service implementation for View  Customer
 	 */
+	@Transactional
 	@Override
 	public CustomerModel viewCustomer(CustomerModel customer) {
 		Optional<CustomerEntity> oo=customerRepo.findById(customer.getCustomerId());
